@@ -7,8 +7,10 @@ echo "Welcome to Spironolactone v0.0.1 (Build: "$BUILD-$BRANCH")!"
 
 if [ "$option" = boot ]; then
     if [ -n "$bootchain" ]; then
+        sleep 3
         "$oscheck"/irecovery -f bootchain/"$bootchain"/iBoot.bin
         echo "Loading iBoot!"
+        sleep 4
         "$oscheck"/irecovery -f bootchain/"$bootchain"/devicetree.img4
         echo "Loading Devicetree!"
         "$oscheck"/irecovery -c "devicetree"
