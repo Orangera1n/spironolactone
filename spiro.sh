@@ -1,7 +1,7 @@
 oscheck=$(uname)
 option=$1
 bootchain=$2
-BUILD=Spironolactone-1
+BUILD=Spironolactone-2
 BRANCH=dev
 echo "Welcome to Spironolactone v0.0.1 (Build: "$BUILD-$BRANCH")!"
 
