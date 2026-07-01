@@ -1,19 +1,27 @@
 oscheck=$(uname)
 option=$1
 bootchain=$2
-BUILD=Spironolactone-2
-BRANCH=dev
-echo "Welcome to Spironolactone v0.0.1 (Build: "$BUILD-$BRANCH")!"
+BUILD=Spironolactone-5
+BRANCH=$(git branch --show-current)
+echo "Welcome to Spironolactone v0.1.0 (Build: "$BUILD-$BRANCH")!"
 
 if [ "$option" = boot ]; then
     if [ -n "$bootchain" ]; then
         sleep 3
-        "$oscheck"/irecovery -f bootchain/"$bootchain"/iBoot.bin
+        "$oscheck"/usbliter8ctl boot bootchain/"$bootchain"/iBoot.patched.bin
         echo "Loading iBoot!"
         sleep 4
+        "$oscheck"/irecovery -f bootchain/"$bootchain"/logo.img4
+        "$oscheck"/irecovery -c "setpicture 0x1"
         "$oscheck"/irecovery -f bootchain/"$bootchain"/devicetree.img4
         echo "Loading Devicetree!"
         "$oscheck"/irecovery -c "devicetree"
+        if [ -e bootchain/"$bootchain"/.ramdisk ]; then
+            "$oscheck"/irecovery -f bootchain/"$bootchain"/ramdisk.img4
+            sleep 2
+            echo "Loading Ramdisk!"
+            irecovery -c ramdisk
+        fi
         "$oscheck"/irecovery -f bootchain/"$bootchain"/trustcache.img4
         echo "Loading trustcache!"
         "$oscheck"/irecovery -c "firmware"
