@@ -1,8 +1,8 @@
 #export ipswurl="$1"
 oscheck=$(uname)
-BUILD=Spironolactone-10.1
+BUILD=Spironolactone-11
 BRANCH=$(git branch --show-current)
-echo "Welcome to Spironolactone v0.1.1 (Build: "$BUILD-$BRANCH")!"
+echo "Welcome to Spironolactone v0.1.2 (Build: "$BUILD-$BRANCH")!"
 #export keypagename="$2"
 #export keypage="https://theapplewiki.com/api.php?action=parse&formatversion=2&page="$keypagename"&prop=wikitext&format=json"
 #echo $keypage
